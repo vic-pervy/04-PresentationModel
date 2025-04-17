@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Code
@@ -6,7 +7,7 @@ namespace Code
     public sealed class ProductHelper : MonoBehaviour
     {
         [SerializeField] private ProductInfo _productInfo;
-        [SerializeField] private ProductPopup _productPopup;
+        [FormerlySerializedAs("_productPopup")] [SerializeField] private ProductPopupView productPopupView;
 
         
         private ProductBuyer _buyer;
@@ -22,8 +23,8 @@ namespace Code
 
         public void ProductPopupShow()
         {
-            var viewModel = new ProductPopupModel(_productInfo, _buyer, _moneyStorage);
-            _productPopup.Show(viewModel);
+            var viewModel = new ProductPopupVM(_productInfo, _buyer, _moneyStorage);
+            productPopupView.Show(viewModel);
         }
 
     }

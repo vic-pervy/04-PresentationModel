@@ -1,35 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Code
 {
-    public interface IShopPresenter
+    /*public interface IShopPresenter
     {
         void Show();
-    }
-    public class ShopPresenter : IShopPresenter
+    }*/
+    public class ShopPresenter : IDisposable
     {
-        private ShopView _view;
+        public event Action<GameObject> OnClosePopup;
+        
+        private ShopPopupView _popupView;
         private IProductCatalog _catalog;
         IPrefabsProvider _prefabsProvider;
         ProductListItemPresenter.Factory _listItemsFactory;
 
         private List<ProductListItemPresenter> _spawnedListItems = new();
 
-        public ShopPresenter(ShopView view, IProductCatalog catalog, IPrefabsProvider prefabsProvider, ProductListItemPresenter.Factory listItemsFactory)
+        public ShopPresenter(IProductCatalog catalog, IPrefabsProvider prefabsProvider, ProductListItemPresenter.Factory listItemsFactory)
         {
-            _view = view;
+            //_view = view;
             _catalog = catalog;
             _prefabsProvider = prefabsProvider;
             _listItemsFactory = listItemsFactory;
         }
 
-        public void Show()
+        public void Show(ShopPopupView popupView)
         {
-            _view.Show();
+            _popupView = popupView;
+            
+            _popupView.Show();
 
-            _view.Closed += View_Closed;
+            _popupView.Closed += PopupViewClosed;
 
             foreach(var product in _catalog.Products)
             {
@@ -39,17 +44,24 @@ namespace Code
             }
 
 
-            _view.SetProducts(_spawnedListItems.Select(p=> p.View).ToList());
+            _popupView.SetProducts(_spawnedListItems.Select(p=> p.View).ToList());
         }
 
-        private void View_Closed()
+        private void PopupViewClosed()
         {
-            _view.Closed -= View_Closed;
+            _popupView.Closed -= PopupViewClosed;
             foreach(var listItem in _spawnedListItems)
             {
                 listItem.Dispose();
             }
             _spawnedListItems.Clear();
+            Dispose();
+            OnClosePopup?.Invoke(_popupView.gameObject);
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

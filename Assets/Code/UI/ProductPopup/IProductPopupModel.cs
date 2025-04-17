@@ -13,7 +13,8 @@ namespace Code
         IReadOnlyReactiveProperty<bool> BuyButtonIsInteractable { get; }
         IProductInfo ProductInfo { get; }
 
-
+        public void AddListener(GameObject o);
+        public void RemoveListener(GameObject o);
         void Buy();
     }
 }

@@ -46,30 +46,31 @@
     <Analyzer Include="D:\Unity\Editor\6000.0.41f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Code\UI\ProductPopupModel.cs" />
-    <Compile Include="Assets\Code\UI\ProductListItemPresenter.cs" />
+    <Compile Include="Assets\Code\UI\ProductPopup\IProductPopupModel.cs" />
     <Compile Include="Assets\Code\UI\MarketButtonPresenter.cs" />
-    <Compile Include="Assets\Code\UI\View\ButtonView.cs" />
+    <Compile Include="Assets\Code\UI\Shop\ShopPopupView.cs" />
+    <Compile Include="Assets\Code\UI\ButtonView.cs" />
     <Compile Include="Assets\Code\Product\Data\ProductInfo.cs" />
-    <Compile Include="Assets\Code\UI\IProductPopupModel.cs" />
-    <Compile Include="Assets\Code\UI\View\CurrencyView.cs" />
+    <Compile Include="Assets\Code\UI\ProductPopup\ProductPopupVM.cs" />
     <Compile Include="Assets\Code\DI\PrefabsInstaller.cs" />
-    <Compile Include="Assets\Code\UI\View\ShopView.cs" />
-    <Compile Include="Assets\Code\UI\View\ProductListItemView.cs" />
-    <Compile Include="Assets\Code\UI\View\ScaleTweenParams.cs" />
+    <Compile Include="Assets\Code\UI\CurrencyUI\CurrencyView.cs" />
+    <Compile Include="Assets\Code\UI\CurrencyUI\MoneyObserver.cs" />
     <Compile Include="Assets\Code\LessonHelper\ProductHelper.cs" />
     <Compile Include="Assets\Code\Currency\MoneyStorage.cs" />
-    <Compile Include="Assets\Code\UI\MoneyObserver.cs" />
+    <Compile Include="Assets\Code\UI\CurrencyUI\ScaleTweenParams.cs" />
     <Compile Include="Assets\Code\LessonHelper\LessonHelper.cs" />
     <Compile Include="Assets\Code\Currency\CurrencyStorage.cs" />
-    <Compile Include="Assets\Code\UI\GemObserver.cs" />
-    <Compile Include="Assets\Code\UI\CurrencyObserver.cs" />
+    <Compile Include="Assets\Code\UI\Shop\ProductListItemView.cs" />
+    <Compile Include="Assets\Code\UI\Shop\ShopPresenter.cs" />
+    <Compile Include="Assets\Code\UI\CurrencyUI\CurrencyObserver.cs" />
+    <Compile Include="Assets\Code\PopupManager.cs" />
+    <Compile Include="Assets\Code\UI\CurrencyUI\GemObserver.cs" />
     <Compile Include="Assets\Code\Product\ProductBuyer.cs" />
     <Compile Include="Assets\Code\Product\Data\ProductCatalog.cs" />
     <Compile Include="Assets\Code\DI\LevelInstaller.cs" />
     <Compile Include="Assets\Code\Currency\GemStorage.cs" />
-    <Compile Include="Assets\Code\UI\ShopPresenter.cs" />
-    <Compile Include="Assets\Code\UI\View\ProductPopup.cs" />
+    <Compile Include="Assets\Code\UI\ProductPopup\ProductPopupView.cs" />
+    <Compile Include="Assets\Code\UI\Shop\ProductListItemPresenter.cs" />
     <None Include="Assets\Code\code.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Unity\Editor\6000.0.41f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

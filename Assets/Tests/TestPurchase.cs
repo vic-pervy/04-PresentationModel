@@ -41,7 +41,7 @@ public class TestPurchase
         var moneyStorage = new MoneyStorage(13);
         var buyer = new ProductBuyer(moneyStorage);
         var purchaseWindow = new MockProductPopup();
-        var viewModel = new ProductPopupModel(productInfo, buyer, moneyStorage);
+        var viewModel = new ProductPopupVM(productInfo, buyer, moneyStorage);
         purchaseWindow.Show(viewModel);
 
         Assert.AreEqual(13, moneyStorage.Count.Value);

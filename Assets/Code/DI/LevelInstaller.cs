@@ -6,13 +6,14 @@ namespace Code
 
     public sealed class LevelInstaller : MonoInstaller
     {
+        [SerializeField] private PopupManager _popupManager;
         [SerializeField] private CurrencyView _gemView;
         [SerializeField] private CurrencyView _moneyView;
         [SerializeField] private ProductHelper _productHelper;
         [SerializeField] private ButtonView _shopButtonView;
     
 
-        [SerializeField] private ShopView _productsListView;
+        //[SerializeField] private ShopView _productsListView;
 
         [SerializeField] private ProductCatalog _productCatalog;
 
@@ -22,7 +23,12 @@ namespace Code
 
             BindTopLevelUI();
 
-            BindShopWindow();
+            Container.BindInterfacesAndSelfTo<PopupManager.PopupFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PopupManager>().FromInstance(_popupManager).AsSingle();
+            //Container.BindInstance(_productsListView).AsSingle();
+            //Container.BindInterfacesTo<ProductPopupVM>().AsSingle();
+            //Container.BindInterfacesTo<ShopPresenter>().AsSingle();
+            Container.BindFactory<IProductInfo, ProductListItemView, ProductListItemPresenter, ProductListItemPresenter.Factory>().FromNew(); 
 
             Container.Bind<ProductBuyer>().AsSingle();
 
@@ -39,12 +45,7 @@ namespace Code
             Container.BindInstance(_shopButtonView).WhenInjectedInto<MarketButtonPresenter>();
         }
 
-        private void BindShopWindow()
-        {
-            Container.BindInstance(_productsListView).AsSingle();
-            Container.BindInterfacesTo<ShopPresenter>().AsSingle();
-            Container.BindFactory<IProductInfo, ProductListItemView, ProductListItemPresenter, ProductListItemPresenter.Factory>().FromNew(); 
-        }
+      
 
         private void MoneyBind()
         {

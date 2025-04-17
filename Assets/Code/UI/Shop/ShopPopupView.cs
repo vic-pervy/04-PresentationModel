@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Code
 {
-    public sealed class ShopView : MonoBehaviour 
+    public sealed class ShopPopupView : MonoBehaviour 
     {
         [SerializeField]
         private Button _closeButton;
@@ -34,7 +34,7 @@ namespace Code
         {
             foreach(var listItem in items)
             {
-                listItem.transform.parent = _content;
+                listItem.transform.SetParent(_content); 
             }
         }
 

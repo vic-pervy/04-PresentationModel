@@ -11,13 +11,16 @@ namespace Code
         private IProductInfo _productInfo;
         private ProductBuyer _productBuyer;
         private MoneyStorage _moneyStorage;
-
+        private PopupManager _popupManager;
+        
         private List<IDisposable> _disposables = new();
 
         public ProductListItemView View => _view;
 
-        public ProductListItemPresenter(IProductInfo productInfo, ProductListItemView view, ProductBuyer productBuyer, MoneyStorage moneyStorage)
+        public ProductListItemPresenter(IProductInfo productInfo, ProductListItemView view, ProductBuyer productBuyer, MoneyStorage moneyStorage, PopupManager popupManager)
         {
+            _popupManager = popupManager;
+            _moneyStorage = moneyStorage;
             _moneyStorage = moneyStorage;
             _productBuyer = productBuyer;
             _view = view;
@@ -40,7 +43,9 @@ namespace Code
 
         private void Buy()
         {
-            _productBuyer.Buy(_productInfo);
+            if (_productBuyer.CanBuy(_productInfo))
+                _popupManager.CreateProductPopup(_productInfo);
+            //_productBuyer.Buy(_productInfo);
         }
 
         public void Dispose()
